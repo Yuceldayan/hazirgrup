@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "allowJs": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": false,
+    "useUnknownInCatchVariables": true,
+
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": false,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@hazirgrup/types": ["packages/types/src/index.ts"],
+      "@hazirgrup/types/*": ["packages/types/src/*"],
+      "@hazirgrup/ui": ["packages/ui/src/index.ts"],
+      "@hazirgrup/ui/*": ["packages/ui/src/*"],
+      "@hazirgrup/core": ["packages/core/src/index.ts"],
+      "@hazirgrup/core/*": ["packages/core/src/*"],
+      "@hazirgrup/validation": ["packages/validation/src/index.ts"],
+      "@hazirgrup/validation/*": ["packages/validation/src/*"]
+    }
+  }
+}

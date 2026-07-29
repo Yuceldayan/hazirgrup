@@ -1,0 +1,27 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ES2023"],
+    "jsx": "preserve",
+    "noEmit": true,
+    "allowJs": true,
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@hazirgrup/types": ["../../packages/types/src/index.ts"],
+      "@hazirgrup/ui": ["../../packages/ui/src/index.ts"],
+      "@hazirgrup/core": ["../../packages/core/src/index.ts"],
+      "@hazirgrup/validation": ["../../packages/validation/src/index.ts"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "../../packages/*/src/**/*.ts"
+  ],
+  "exclude": ["node_modules", ".next", "**/__tests__/**"]
+}

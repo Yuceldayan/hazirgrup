@@ -1,0 +1,29 @@
+{
+  "name": "@hazirgrup/web",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "predev": "npm run tokens --silent",
+    "dev": "next dev --port 3000",
+    "prebuild": "npm run tokens --silent",
+    "build": "next build",
+    "start": "next start --port 3000",
+    "tokens": "tsx ../../scripts/generate-css-vars.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@hazirgrup/core": "*",
+    "@hazirgrup/types": "*",
+    "@hazirgrup/ui": "*",
+    "@hazirgrup/validation": "*",
+    "next": "16.2.12",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "server-only": "^0.0.1",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0"
+  }
+}

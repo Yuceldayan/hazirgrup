@@ -1,0 +1,259 @@
+@import './tokens.css';
+
+/* ============================================================================
+ * Temel stiller ve sıfırlama
+ * ========================================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--font-sans);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+  color: var(--color-text-primary);
+  background: var(--color-bg-canvas);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+a {
+  color: var(--color-brand-text);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border-default);
+}
+
+/* --- Erişilebilirlik: odak halkası her zaman görünür ---------------------- */
+:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* --- Yalnızca ekran okuyucular için ------------------------------------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* --- İçeriğe atla bağlantısı --------------------------------------------- */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-base);
+  z-index: 100;
+  padding: var(--space-sm) var(--space-base);
+  background: var(--color-brand-default);
+  color: var(--color-text-on-brand);
+  border-radius: var(--radius-md);
+  transition: top var(--duration-transition) var(--easing);
+}
+
+.skip-link:focus {
+  top: var(--space-base);
+}
+
+/* ============================================================================
+ * Düzen yardımcıları
+ * ========================================================================= */
+
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding-inline: var(--screen-padding);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.prose {
+  max-width: var(--prose-max-width);
+}
+
+.prose p,
+.prose ul,
+.prose ol {
+  margin-block: var(--space-md);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: var(--space-lg);
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li {
+  margin-block: var(--space-xs);
+}
+
+.prose h2 {
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-sm);
+  font-size: var(--type-h2-size);
+  line-height: var(--type-h2-line);
+}
+
+.prose h3 {
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-xs);
+  font-size: var(--type-h3-size);
+  line-height: var(--type-h3-line);
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-subtle);
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: var(--space-base);
+}
+
+.prose th,
+.prose td {
+  padding: var(--space-sm);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+/* Geniş içerik yatayda taşmasın */
+.scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ============================================================================
+ * Animasyonlar
+ * ========================================================================= */
+
+@keyframes hg-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@keyframes hg-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hg-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

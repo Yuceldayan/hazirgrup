@@ -1,0 +1,49 @@
+{
+  "name": "hazirgrup",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HazırGrup — Grubunu oluştur, paketini seç, birlikte karar ver.",
+  "license": "UNLICENSED",
+  "workspaces": [
+    "packages/*",
+    "apps/web",
+    "apps/mobile"
+  ],
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "dev": "npm run dev --workspace @hazirgrup/web",
+    "dev:mobile": "npm run start --workspace @hazirgrup/mobile",
+    "build": "npm run build --workspace @hazirgrup/web",
+    "start": "npm run start --workspace @hazirgrup/web",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:rls": "tsx scripts/run-rls-tests.ts",
+    "seed:sql": "tsx scripts/generate-seed-sql.ts",
+    "tokens:css": "tsx scripts/generate-css-vars.ts",
+    "format": "prettier --write \"**/*.{ts,tsx,js,mjs,json,md,css,sql}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,json,md,css,sql}\"",
+    "verify": "npm run lint && npm run typecheck && npm test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@playwright/test": "^1.62.0",
+    "@types/node": "^22.15.3",
+    "@vitest/coverage-v8": "^4.1.10",
+    "eslint": "^9.39.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react-hooks": "^6.1.1",
+    "globals": "^16.5.0",
+    "prettier": "^3.6.2",
+    "tsx": "^4.20.6",
+    "typescript": "5.9.3",
+    "typescript-eslint": "^8.47.0",
+    "vitest": "^4.1.10"
+  }
+}

@@ -1,0 +1,200 @@
+/* ============================================================================
+ * Plan sihirbazı — 7 adım
+ * ========================================================================= */
+
+.wizard {
+  max-width: 640px;
+}
+
+.header {
+  margin-bottom: var(--space-lg);
+}
+
+.stepMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: var(--type-small-size);
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+
+.stepTitle {
+  font-size: var(--type-h1-size);
+  line-height: var(--type-h1-line);
+  font-weight: 700;
+  margin-top: var(--space-base);
+}
+
+.stepHint {
+  color: var(--color-text-secondary);
+  font-size: var(--type-small-size);
+  margin-top: 4px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-block: var(--space-xl);
+}
+
+.quickRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.quickButton {
+  padding: 10px 16px;
+  min-height: var(--min-touch-target);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg-surface);
+  font-size: var(--type-small-size);
+  color: var(--color-text-primary);
+}
+
+.quickButton:hover {
+  border-color: var(--color-brand-default);
+}
+
+.quickButtonActive {
+  border-color: var(--color-brand-default);
+  background: var(--color-brand-surface);
+  color: var(--color-brand-text);
+  font-weight: 600;
+}
+
+.optionGrid {
+  display: grid;
+  gap: var(--space-sm);
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.optionCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-base);
+  min-height: 68px;
+  border: 2px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-surface);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--duration-press) var(--easing);
+}
+
+.optionCard input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.optionCard:has(input:checked) {
+  border-color: var(--color-brand-default);
+  background: var(--color-brand-surface);
+}
+
+.optionCard:has(input:focus-visible) {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.optionTitle {
+  font-weight: 600;
+  font-size: var(--type-body-size);
+}
+
+.optionHint {
+  font-size: var(--type-caption-size);
+  color: var(--color-text-secondary);
+}
+
+/* --- Bütçe hesabı --------------------------------------------------------- */
+
+.calcBox {
+  padding: var(--space-base);
+  border-radius: var(--radius-lg);
+  background: var(--color-brand-surface);
+  border: 1px solid var(--color-brand-subtle);
+}
+
+.calcRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-base);
+}
+
+.calcValue {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-brand-text);
+}
+
+.calcLabel {
+  font-size: var(--type-small-size);
+  color: var(--color-text-secondary);
+}
+
+.calcNote {
+  font-size: var(--type-caption-size);
+  color: var(--color-text-secondary);
+  margin-top: 8px;
+}
+
+/* --- Özet ---------------------------------------------------------------- */
+
+.summaryList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-base);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.summaryRow:last-child {
+  border-bottom: none;
+}
+
+.summaryLabel {
+  color: var(--color-text-secondary);
+  font-size: var(--type-small-size);
+  flex-shrink: 0;
+}
+
+.summaryValue {
+  text-align: right;
+  font-weight: 500;
+}
+
+/* --- Alt aksiyon çubuğu --------------------------------------------------- */
+
+.actions {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  padding-top: var(--space-base);
+  border-top: 1px solid var(--color-border-default);
+}
+
+.actionsSpacer {
+  flex: 1;
+}
+
+.draftNote {
+  font-size: var(--type-caption-size);
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-top: var(--space-sm);
+}

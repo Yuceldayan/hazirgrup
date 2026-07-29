@@ -1,0 +1,248 @@
+/* ============================================================================
+ * Ana sayfa (landing)
+ * ========================================================================= */
+
+.hero {
+  display: grid;
+  gap: var(--space-2xl);
+  padding-block: var(--space-2xl) var(--space-3xl);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: 1.15fr 1fr;
+    gap: var(--space-4xl);
+  }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-surface);
+  color: var(--color-brand-text);
+  font-size: var(--type-caption-size);
+  font-weight: 600;
+  margin-bottom: var(--space-base);
+}
+
+.heroTitle {
+  font-size: clamp(30px, 5.5vw, 46px);
+  line-height: 1.14;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.heroLead {
+  margin-top: var(--space-base);
+  font-size: 17px;
+  line-height: 26px;
+  color: var(--color-text-secondary);
+  max-width: 52ch;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+}
+
+.heroMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-base);
+  border-top: 1px solid var(--color-border-default);
+}
+
+.heroStat {
+  display: flex;
+  flex-direction: column;
+}
+
+.heroStatValue {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.heroStatLabel {
+  font-size: var(--type-small-size);
+  color: var(--color-text-secondary);
+}
+
+/* --- Akış kartı ----------------------------------------------------------- */
+
+.flowCard {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  box-shadow: var(--elevation-lg);
+}
+
+.flowStep {
+  display: flex;
+  gap: var(--space-md);
+  padding-block: var(--space-md);
+  position: relative;
+}
+
+.flowStep:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 46px;
+  bottom: -6px;
+  width: 2px;
+  background: var(--color-border-default);
+}
+
+.flowNumber {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: grid;
+  place-items: center;
+  background: var(--color-brand-surface);
+  color: var(--color-brand-text);
+  font-weight: 700;
+  font-size: 14px;
+  z-index: 1;
+}
+
+.flowTitle {
+  font-weight: 600;
+}
+
+.flowText {
+  font-size: var(--type-small-size);
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+
+/* --- Bölümler ------------------------------------------------------------- */
+
+.section {
+  padding-block: var(--space-3xl);
+  border-top: 1px solid var(--color-border-default);
+}
+
+.grid2 {
+  display: grid;
+  gap: var(--space-base);
+  grid-template-columns: 1fr;
+}
+
+.grid3 {
+  display: grid;
+  gap: var(--space-base);
+  grid-template-columns: 1fr;
+}
+
+.grid4 {
+  display: grid;
+  gap: var(--space-base);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 560px) {
+  .grid2,
+  .grid3,
+  .grid4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .grid3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.featureIcon {
+  font-size: 24px;
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+}
+
+.featureTitle {
+  font-size: var(--type-h3-size);
+  line-height: var(--type-h3-line);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.featureText {
+  font-size: var(--type-small-size);
+  color: var(--color-text-secondary);
+}
+
+/* --- Problem / çözüm ------------------------------------------------------ */
+
+.compare {
+  display: grid;
+  gap: var(--space-base);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 760px) {
+  .compare {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.compareList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+
+.compareItem {
+  display: flex;
+  gap: var(--space-sm);
+  font-size: var(--type-small-size);
+  color: var(--color-text-secondary);
+}
+
+/* --- CTA ------------------------------------------------------------------ */
+
+.cta {
+  margin-block: var(--space-3xl) 0;
+  padding: var(--space-2xl);
+  border-radius: var(--radius-xl);
+  background: var(--color-brand-surface);
+  border: 1px solid var(--color-brand-subtle);
+  text-align: center;
+}
+
+.ctaTitle {
+  font-size: var(--type-h1-size);
+  line-height: var(--type-h1-line);
+  font-weight: 700;
+}
+
+.ctaText {
+  margin-top: var(--space-sm);
+  color: var(--color-text-secondary);
+  max-width: 56ch;
+  margin-inline: auto;
+}
+
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin-top: var(--space-lg);
+}

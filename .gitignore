@@ -1,0 +1,49 @@
+# Bağımlılıklar
+node_modules/
+.pnp/
+.pnp.js
+
+# Build çıktıları
+dist/
+build/
+.next/
+out/
+*.tsbuildinfo
+.expo/
+.expo-shared/
+android/
+ios/
+web-build/
+
+# Ortam değişkenleri — asla commit edilmez
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Test ve rapor
+coverage/
+playwright-report/
+test-results/
+blob-report/
+.playwright/
+lighthouse-*.html
+
+# Supabase local
+supabase/.branches/
+supabase/.temp/
+supabase/.env
+
+# Editör / işletim sistemi
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.recommended.json
+*.swp
+
+# Loglar
+*.log
+npm-debug.log*
+yarn-error.log*

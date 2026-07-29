@@ -1,0 +1,124 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--elevation-sm);
+  transition:
+    border-color var(--duration-transition) var(--easing),
+    box-shadow var(--duration-transition) var(--easing);
+  height: 100%;
+}
+
+.card:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--elevation-md);
+}
+
+.imageLink {
+  display: block;
+  aspect-ratio: 3 / 2;
+  background: var(--color-bg-subtle);
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageFallback {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 40px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--space-base);
+  flex: 1;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.location {
+  font-size: var(--type-caption-size);
+  color: var(--color-text-muted);
+}
+
+.title {
+  font-size: var(--type-h3-size);
+  line-height: var(--type-h3-line);
+  font-weight: 600;
+}
+
+.title a {
+  color: var(--color-text-primary);
+}
+
+.title a:hover {
+  color: var(--color-brand-text);
+  text-decoration: none;
+}
+
+.business {
+  font-size: var(--type-small-size);
+  color: var(--color-text-secondary);
+}
+
+.business a {
+  color: var(--color-text-secondary);
+}
+
+.verified {
+  color: var(--color-success-text);
+  font-size: var(--type-caption-size);
+}
+
+.capacity {
+  font-size: var(--type-small-size);
+  color: var(--color-text-secondary);
+}
+
+.priceRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-top: auto;
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-border-default);
+}
+
+.price {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.total {
+  font-size: var(--type-body-size);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.totalBox {
+  text-align: right;
+}
+
+.priceLabel {
+  font-size: var(--type-caption-size);
+  color: var(--color-text-muted);
+}

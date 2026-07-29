@@ -1,0 +1,327 @@
+/* ============================================================================
+ * Public sayfa düzenleri (şehir, ilçe, kategori, mekân, paket, rehber)
+ * ========================================================================= */
+
+.pageHeader {
+  padding-block: var(--space-base) var(--space-2xl);
+}
+
+.pageTitle {
+  font-size: clamp(26px, 4.5vw, 36px);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.pageLead {
+  margin-top: var(--space-sm);
+  color: var(--color-text-secondary);
+  max-width: 68ch;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.statRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.statValue {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.statLabel {
+  font-size: var(--type-small-size);
+  color: var(--color-text-secondary);
+}
+
+.section {
+  padding-block: var(--space-2xl);
+  border-top: 1px solid var(--color-border-default);
+}
+
+.sectionFirst {
+  padding-top: 0;
+  border-top: none;
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-base);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 560px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.gridWide {
+  display: grid;
+  gap: var(--space-base);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 760px) {
+  .gridWide {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  min-height: var(--min-touch-target);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font-size: var(--type-small-size);
+}
+
+.chip:hover {
+  border-color: var(--color-brand-default);
+  color: var(--color-brand-text);
+  text-decoration: none;
+}
+
+.chipCount {
+  color: var(--color-text-muted);
+  font-size: var(--type-caption-size);
+}
+
+/* --- Detay düzeni (mekân / paket) ----------------------------------------- */
+
+.detail {
+  display: grid;
+  gap: var(--space-2xl);
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 960px) {
+  .detail {
+    grid-template-columns: 1fr 340px;
+  }
+}
+
+.detailAside {
+  position: sticky;
+  top: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-base);
+}
+
+.hero {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border-default);
+  aspect-ratio: 3 / 2;
+  background: var(--color-bg-subtle);
+  margin-bottom: var(--space-lg);
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.item {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-start;
+  padding-block: 4px;
+}
+
+.itemCheck {
+  color: var(--color-success-text);
+  flex-shrink: 0;
+}
+
+.priceBlock {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.priceMain {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.priceUnit {
+  color: var(--color-text-secondary);
+  font-size: var(--type-small-size);
+}
+
+.priceSecondary {
+  color: var(--color-text-secondary);
+  font-size: var(--type-small-size);
+  margin-top: 4px;
+}
+
+/* --- Çalışma saatleri tablosu --------------------------------------------- */
+
+.hoursTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--type-small-size);
+}
+
+.hoursTable td {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.hoursTable td:last-child {
+  text-align: right;
+  color: var(--color-text-secondary);
+}
+
+.hoursTable tr:last-child td {
+  border-bottom: none;
+}
+
+.closed {
+  color: var(--color-text-muted);
+}
+
+/* --- SSS ------------------------------------------------------------------ */
+
+.faqItem {
+  border-bottom: 1px solid var(--color-border-default);
+  padding-block: var(--space-base);
+}
+
+.faqItem:last-child {
+  border-bottom: none;
+}
+
+.faqQuestion {
+  font-size: var(--type-h3-size);
+  line-height: var(--type-h3-line);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.faqAnswer {
+  color: var(--color-text-secondary);
+  max-width: 72ch;
+}
+
+/* --- Adım kartları -------------------------------------------------------- */
+
+.steps {
+  display: grid;
+  gap: var(--space-base);
+  grid-template-columns: 1fr;
+  counter-reset: step;
+}
+
+@media (min-width: 700px) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.step {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.stepNumber {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  display: grid;
+  place-items: center;
+  background: var(--color-brand-default);
+  color: var(--color-text-on-brand);
+  font-weight: 700;
+}
+
+.stepTitle {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.stepText {
+  color: var(--color-text-secondary);
+  font-size: var(--type-small-size);
+}
+
+/* --- İletişim aksiyonları ------------------------------------------------- */
+
+.contactRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+/* --- Bilgi listesi -------------------------------------------------------- */
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-base);
+  font-size: var(--type-small-size);
+}
+
+.infoLabel {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.infoValue {
+  text-align: right;
+  font-weight: 500;
+}

@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM"],
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "allowJs": true,
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@hazirgrup/types": ["../../packages/types/src/index.ts"],
+      "@hazirgrup/ui": ["../../packages/ui/src/index.ts"],
+      "@hazirgrup/core": ["../../packages/core/src/index.ts"],
+      "@hazirgrup/validation": ["../../packages/validation/src/index.ts"]
+    },
+    "types": ["react", "node"]
+  },
+  "include": ["app/**/*.ts", "app/**/*.tsx", "src/**/*.ts", "src/**/*.tsx", "*.ts"],
+  "exclude": ["node_modules", ".expo"]
+}

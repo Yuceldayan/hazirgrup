@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Konsol — temsilî görsel">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#3B0764"/>
+    </linearGradient>
+    <pattern id="dots" width="48" height="48" patternUnits="userSpaceOnUse">
+      <circle cx="6" cy="6" r="2" fill="rgba(255,255,255,0.10)"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <rect width="1200" height="800" fill="url(#dots)"/>
+  <text x="600" y="380" font-size="140" text-anchor="middle" dominant-baseline="middle">🕹️</text>
+  <text x="600" y="500" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="46" font-weight="600" fill="#FFFFFF" text-anchor="middle">Konsol</text>
+  <text x="600" y="556" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="24" fill="rgba(255,255,255,0.78)" text-anchor="middle">Temsilî görsel — demo verisi</text>
+</svg>

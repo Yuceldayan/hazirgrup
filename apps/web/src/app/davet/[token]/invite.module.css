@@ -1,0 +1,236 @@
+/* ============================================================================
+ * Misafir davet akışı — mobil öncelikli, hızlı açılan sayfa
+ * ========================================================================= */
+
+.wrapper {
+  max-width: 640px;
+  margin-inline: auto;
+  padding-inline: var(--screen-padding);
+}
+
+.planCard {
+  background: linear-gradient(135deg, var(--color-brand-default), var(--color-brand-pressed));
+  color: #ffffff;
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-lg);
+}
+
+.planEyebrow {
+  font-size: var(--type-caption-size);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  opacity: 0.85;
+}
+
+.planName {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 4px;
+}
+
+.planMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-base);
+  font-size: var(--type-small-size);
+}
+
+.planMetaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.16);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+}
+
+.participantRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-base);
+}
+
+.participantChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-default);
+  font-size: var(--type-caption-size);
+}
+
+.statusOptions {
+  display: grid;
+  gap: var(--space-sm);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 480px) {
+  .statusOptions {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.statusOption {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: var(--space-base) var(--space-sm);
+  min-height: 76px;
+  border: 2px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-surface);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color var(--duration-press) var(--easing);
+}
+
+.statusOption input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.statusOption:has(input:checked) {
+  border-color: var(--color-brand-default);
+  background: var(--color-brand-surface);
+}
+
+.statusOption:has(input:focus-visible) {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.statusIcon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.statusLabel {
+  font-size: var(--type-small-size);
+  font-weight: 600;
+}
+
+/* --- Oylama --------------------------------------------------------------- */
+
+.voteList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.voteCard {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+  padding: var(--space-base);
+  border: 2px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-surface);
+  width: 100%;
+  text-align: left;
+  transition: border-color var(--duration-press) var(--easing);
+}
+
+.voteCard:hover {
+  border-color: var(--color-border-strong);
+}
+
+.voteCardSelected {
+  border-color: var(--color-brand-default);
+  background: var(--color-brand-surface);
+}
+
+.voteCardWinner {
+  border-color: var(--color-success-solid);
+  background: var(--color-success-bg);
+}
+
+.voteBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.voteName {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.voteMeta {
+  font-size: var(--type-small-size);
+  color: var(--color-text-secondary);
+}
+
+.voteReasons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.votePrice {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.votePriceMain {
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.votePriceLabel {
+  font-size: var(--type-caption-size);
+  color: var(--color-text-muted);
+}
+
+.voteTally {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-border-default);
+  font-size: var(--type-small-size);
+}
+
+.voteBar {
+  flex: 1;
+  height: 6px;
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.voteBarFill {
+  height: 100%;
+  background: var(--color-brand-default);
+  border-radius: var(--radius-full);
+  transition: width var(--duration-transition) var(--easing);
+}
+
+.voterNames {
+  font-size: var(--type-caption-size);
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+/* --- Alt bilgi ------------------------------------------------------------ */
+
+.footNote {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-base);
+  border-top: 1px solid var(--color-border-default);
+  font-size: var(--type-small-size);
+  color: var(--color-text-secondary);
+  text-align: center;
+}

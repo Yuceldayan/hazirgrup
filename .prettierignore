@@ -1,0 +1,11 @@
+node_modules
+.next
+dist
+build
+coverage
+.expo
+playwright-report
+test-results
+supabase/seed/seed.sql
+apps/web/src/styles/tokens.css
+package-lock.json

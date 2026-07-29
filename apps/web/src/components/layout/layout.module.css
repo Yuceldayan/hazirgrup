@@ -1,0 +1,337 @@
+/* ============================================================================
+ * Site düzeni: header, footer, sayfa iskeleti
+ * ========================================================================= */
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.main {
+  flex: 1;
+  padding-block: var(--space-xl) var(--space-4xl);
+}
+
+/* --- Header --------------------------------------------------------------- */
+
+.header {
+  /* `relative` değil `sticky`: yine de konumlanmış ata olur, mobil menü buna çapalanır. */
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--color-bg-canvas) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-base);
+  min-height: 64px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-text-primary);
+  letter-spacing: -0.3px;
+}
+
+.logo:hover {
+  text-decoration: none;
+}
+
+.logoMark {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-md);
+  background: var(--color-brand-default);
+  color: var(--color-text-on-brand);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.nav {
+  display: none;
+  gap: var(--space-lg);
+  margin-left: var(--space-lg);
+}
+
+@media (min-width: 900px) {
+  .nav {
+    display: flex;
+  }
+}
+
+.navLink {
+  color: var(--color-text-secondary);
+  font-size: var(--type-body-size);
+  padding-block: 4px;
+}
+
+.navLink:hover {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-left: auto;
+}
+
+/* Dar ekranlarda gizlenen ikincil aksiyonlar.
+   Bir <span> sarmalayıcıya uygulanır; buton sınıflarıyla çakışmaz. */
+.desktopOnly {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .desktopOnly {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* --- Mobil menü ----------------------------------------------------------- */
+
+.mobileToggle {
+  display: grid;
+  place-items: center;
+  width: var(--min-touch-target);
+  height: var(--min-touch-target);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-bg-surface);
+  font-size: 18px;
+}
+
+@media (min-width: 900px) {
+  .mobileToggle {
+    display: none;
+  }
+}
+
+/*
+  Panel, DOM'da aksiyon satırının içinde yer alır (düğmeyle aynı bileşen).
+  Mutlak konumlandırma ile sticky `.header`'a çapalanır; böylece flex satırında
+  sıkışmak yerine başlığın hemen altında tam genişlikte açılır.
+*/
+.mobileMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--color-border-default);
+  border-bottom: 1px solid var(--color-border-default);
+  background: var(--color-bg-surface);
+  box-shadow: var(--elevation-md);
+  padding-block: var(--space-sm);
+}
+
+@media (min-width: 900px) {
+  .mobileMenu {
+    display: none;
+  }
+}
+
+.mobileMenu a {
+  display: block;
+  padding: 12px var(--screen-padding);
+  color: var(--color-text-primary);
+  min-height: var(--min-touch-target);
+}
+
+.mobileMenu a:hover {
+  background: var(--color-bg-subtle);
+  text-decoration: none;
+}
+
+/* --- Tema düğmesi --------------------------------------------------------- */
+
+.themeToggle {
+  display: grid;
+  place-items: center;
+  width: var(--min-touch-target);
+  height: var(--min-touch-target);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-bg-surface);
+  font-size: 16px;
+}
+
+.themeToggle:hover {
+  background: var(--color-bg-subtle);
+}
+
+/* --- Footer --------------------------------------------------------------- */
+
+.footer {
+  border-top: 1px solid var(--color-border-default);
+  background: var(--color-bg-subtle);
+  padding-block: var(--space-2xl) var(--space-xl);
+  margin-top: auto;
+}
+
+.footerGrid {
+  display: grid;
+  gap: var(--space-xl);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .footerGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .footerGrid {
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+  }
+}
+
+.footerTitle {
+  font-size: var(--type-small-size);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.footerList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footerList a {
+  color: var(--color-text-secondary);
+  font-size: var(--type-small-size);
+}
+
+.footerList a:hover {
+  color: var(--color-brand-text);
+}
+
+.footerTagline {
+  color: var(--color-text-secondary);
+  font-size: var(--type-small-size);
+  max-width: 40ch;
+  margin-top: var(--space-xs);
+}
+
+.footerBottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-base);
+  border-top: 1px solid var(--color-border-default);
+  font-size: var(--type-small-size);
+  color: var(--color-text-muted);
+}
+
+/* --- Demo modu bandı ------------------------------------------------------ */
+
+.demoBanner {
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+  border-bottom: 1px solid var(--color-warning-border);
+  font-size: var(--type-small-size);
+  padding-block: 8px;
+  text-align: center;
+}
+
+.demoBanner strong {
+  font-weight: 600;
+}
+
+/* --- Panel düzeni (hesap / işletme / admin) ------------------------------- */
+
+.panel {
+  display: grid;
+  gap: var(--space-xl);
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .panel {
+    grid-template-columns: 232px 1fr;
+  }
+}
+
+.panelNav {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+@media (min-width: 900px) {
+  .panelNav {
+    position: sticky;
+    top: 88px;
+    flex-direction: column;
+    overflow: visible;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.panelNavLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px var(--space-md);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  font-size: var(--type-body-size);
+  white-space: nowrap;
+  min-height: var(--min-touch-target);
+}
+
+.panelNavLink:hover {
+  background: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.panelNavLinkActive {
+  background: var(--color-brand-surface);
+  color: var(--color-brand-text);
+  font-weight: 600;
+}
+
+.panelBody {
+  min-width: 0;
+}
+
+.panelHeader {
+  margin-bottom: var(--space-xl);
+}
+
+.panelTitle {
+  font-size: var(--type-h1-size);
+  line-height: var(--type-h1-line);
+  font-weight: 700;
+}
+
+.panelSubtitle {
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+}

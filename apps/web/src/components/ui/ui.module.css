@@ -1,0 +1,538 @@
+/* ============================================================================
+ * Ortak bileşen stilleri
+ * Tüm değerler tasarım tokenlarından gelir (docs/DESIGN_SYSTEM.md §12).
+ * ========================================================================= */
+
+/* --- Buton ---------------------------------------------------------------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  transition:
+    background-color var(--duration-press) var(--easing),
+    border-color var(--duration-press) var(--easing),
+    transform var(--duration-press) var(--easing);
+  text-decoration: none;
+  white-space: nowrap;
+  /* Erişilebilirlik: minimum dokunma alanı */
+  min-height: var(--min-touch-target);
+  min-width: var(--min-touch-target);
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.985);
+}
+
+.button:disabled,
+.button[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.buttonFullWidth {
+  width: 100%;
+}
+
+/* Boyutlar */
+.buttonSm {
+  height: 36px;
+  min-height: 36px;
+  padding-inline: var(--space-md);
+  font-size: var(--type-small-size);
+}
+
+/*
+  Erişilebilirlik: dokunmatik cihazlarda küçük buton bile en az 44px
+  dokunma alanına sahip olmalıdır (docs/DESIGN_SYSTEM.md §10.1).
+  İşaretçi hassas (fare) olduğunda kompakt görünüm korunur.
+*/
+@media (pointer: coarse) {
+  .buttonSm {
+    height: var(--min-touch-target);
+    min-height: var(--min-touch-target);
+  }
+}
+
+.buttonMd {
+  height: 44px;
+  padding-inline: var(--space-base);
+  font-size: var(--type-body-size);
+}
+
+.buttonLg {
+  height: 52px;
+  padding-inline: var(--space-lg);
+  font-size: 16px;
+}
+
+/* Varyantlar */
+.buttonPrimary {
+  background: var(--color-brand-default);
+  color: var(--color-text-on-brand);
+}
+
+.buttonPrimary:hover:not(:disabled) {
+  background: var(--color-brand-hover);
+}
+
+.buttonSecondary {
+  background: transparent;
+  color: var(--color-text-primary);
+  border-color: var(--color-border-strong);
+}
+
+.buttonSecondary:hover:not(:disabled) {
+  background: var(--color-bg-subtle);
+}
+
+.buttonGhost {
+  background: transparent;
+  color: var(--color-brand-text);
+}
+
+.buttonGhost:hover:not(:disabled) {
+  background: var(--color-bg-subtle);
+}
+
+.buttonDanger {
+  background: var(--color-danger-solid);
+  color: #ffffff;
+}
+
+.buttonDanger:hover:not(:disabled) {
+  filter: brightness(0.93);
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--radius-full);
+  animation: hg-spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+/* --- Kart ----------------------------------------------------------------- */
+
+.card {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-base);
+  box-shadow: var(--elevation-sm);
+}
+
+.cardInteractive {
+  display: block;
+  color: inherit;
+  transition:
+    border-color var(--duration-transition) var(--easing),
+    box-shadow var(--duration-transition) var(--easing);
+}
+
+.cardInteractive:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--elevation-md);
+  text-decoration: none;
+}
+
+.cardRaised {
+  background: var(--color-bg-raised);
+}
+
+.cardFlat {
+  box-shadow: none;
+}
+
+/* --- Rozet ---------------------------------------------------------------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-line);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.badgeIcon {
+  font-size: 11px;
+  line-height: 1;
+}
+
+/* --- Input ---------------------------------------------------------------- */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: var(--type-small-size);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.required {
+  color: var(--color-danger-text);
+  margin-left: 2px;
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px var(--space-md);
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  font-size: var(--type-body-size);
+  transition: border-color var(--duration-press) var(--easing);
+}
+
+.textarea {
+  min-height: 104px;
+  resize: vertical;
+}
+
+.select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% + 2px),
+    calc(100% - 13px) calc(50% + 2px);
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: var(--space-2xl);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.input:focus-visible,
+.textarea:focus-visible,
+.select:focus-visible {
+  border-color: var(--color-border-focus);
+}
+
+.inputError {
+  border-color: var(--color-danger-solid);
+}
+
+.hint {
+  font-size: var(--type-small-size);
+  color: var(--color-text-secondary);
+}
+
+.errorText {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: var(--type-small-size);
+  color: var(--color-danger-text);
+}
+
+.input:disabled,
+.textarea:disabled,
+.select:disabled {
+  background: var(--color-disabled-bg);
+  color: var(--color-disabled-text);
+  cursor: not-allowed;
+}
+
+/* --- Seçim grupları (radio / checkbox kartları) --------------------------- */
+
+.choiceGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.choice {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--min-touch-target);
+  padding: 10px var(--space-base);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+  font-size: var(--type-body-size);
+  cursor: pointer;
+  transition:
+    border-color var(--duration-press) var(--easing),
+    background-color var(--duration-press) var(--easing);
+}
+
+.choice:hover {
+  border-color: var(--color-brand-default);
+}
+
+.choice input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.choice:has(input:checked) {
+  border-color: var(--color-brand-default);
+  background: var(--color-brand-surface);
+  color: var(--color-brand-text);
+  font-weight: 600;
+}
+
+.choice:has(input:focus-visible) {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* --- Boş durum ------------------------------------------------------------ */
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-3xl) var(--space-base);
+  text-align: center;
+  background: var(--color-bg-subtle);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+}
+
+.emptyIcon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.emptyTitle {
+  font-size: var(--type-h3-size);
+  line-height: var(--type-h3-line);
+  font-weight: 600;
+}
+
+.emptyDescription {
+  max-width: 46ch;
+  color: var(--color-text-secondary);
+}
+
+/* --- Skeleton ------------------------------------------------------------- */
+
+.skeleton {
+  background: var(--color-skeleton);
+  border-radius: var(--radius-sm);
+  animation: hg-pulse 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
+/* --- Uyarı kutusu --------------------------------------------------------- */
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid;
+  font-size: var(--type-body-size);
+}
+
+.alertInfo {
+  background: var(--color-info-bg);
+  border-color: var(--color-info-border);
+  color: var(--color-info-text);
+}
+
+.alertSuccess {
+  background: var(--color-success-bg);
+  border-color: var(--color-success-border);
+  color: var(--color-success-text);
+}
+
+.alertWarning {
+  background: var(--color-warning-bg);
+  border-color: var(--color-warning-border);
+  color: var(--color-warning-text);
+}
+
+.alertError {
+  background: var(--color-danger-bg);
+  border-color: var(--color-danger-border);
+  color: var(--color-danger-text);
+}
+
+.alertBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.alertTitle {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+/* --- Breadcrumb ----------------------------------------------------------- */
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--type-small-size);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-base);
+}
+
+.breadcrumbSeparator {
+  color: var(--color-text-muted);
+}
+
+.breadcrumb a {
+  color: var(--color-text-secondary);
+}
+
+.breadcrumb a:hover {
+  color: var(--color-brand-text);
+}
+
+.breadcrumbCurrent {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+/* --- İlerleme çubuğu ------------------------------------------------------ */
+
+.progressTrack {
+  height: 6px;
+  width: 100%;
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--color-brand-default);
+  border-radius: var(--radius-full);
+  transition: width var(--duration-transition) var(--easing);
+}
+
+.progressLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: var(--type-small-size);
+  color: var(--color-text-secondary);
+  margin-bottom: 6px;
+}
+
+/* --- Bölüm başlığı -------------------------------------------------------- */
+
+.sectionHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-base);
+}
+
+.sectionTitle {
+  font-size: var(--type-h2-size);
+  line-height: var(--type-h2-line);
+  font-weight: 600;
+}
+
+.sectionDescription {
+  color: var(--color-text-secondary);
+  font-size: var(--type-small-size);
+}
+
+/* --- Durum zaman çizelgesi ------------------------------------------------ */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timelineItem {
+  display: flex;
+  gap: var(--space-md);
+  padding-bottom: var(--space-base);
+  position: relative;
+}
+
+.timelineItem:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 24px;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-border-default);
+}
+
+.timelineDot {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  background: var(--color-bg-subtle);
+  border: 2px solid var(--color-border-default);
+  z-index: 1;
+}
+
+.timelineDotDone {
+  background: var(--color-success-bg);
+  border-color: var(--color-success-solid);
+}
+
+.timelineDotCurrent {
+  background: var(--color-brand-surface);
+  border-color: var(--color-brand-default);
+}
+
+.timelineContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.timelineLabel {
+  font-weight: 600;
+}
+
+.timelineMeta {
+  font-size: var(--type-small-size);
+  color: var(--color-text-secondary);
+}
