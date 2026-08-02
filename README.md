@@ -1,167 +1,170 @@
 # HazırGrup
 
-> **Grubunu oluştur, paketini seç, birlikte karar ver.**
+> **Create your group, pick a package, decide together.**
 
-Arkadaş gruplarının "nereye gidelim?" sorusunu tek akışta çözen şehir bazlı platform.
-Grup kurulur, kişi sayısı/bütçe/tarih girilir, uygun mekân paketleri listelenir,
-arkadaşlar bağlantıyla davet edilip birlikte oy verir ve kazanan paket için
-işletmeye rezervasyon talebi gönderilir.
+A city-based platform that answers a group of friends' "so where are we going?"
+in a single flow. You create a group, enter headcount, budget and date, get
+matching venue packages, invite friends by link so they can vote with you, and
+send a booking request to the venue behind the winning package.
 
 ---
 
-## Tek komutla çalıştır
+## Runs with one command
 
 ```bash
 npm install
 npm run dev
 ```
 
-`http://localhost:3000` — **hiçbir ortam değişkeni ya da harici servis gerekmez.**
+`http://localhost:3000` — **no environment variables and no external services
+required.**
 
-Supabase anahtarı tanımlı değilse uygulama otomatik olarak **demo moduna** düşer:
-seed verisiyle dolu bellek içi bir veri kaynağı kullanılır ve plan → davet → oy →
-rezervasyon akışının tamamı eksiksiz çalışır. Üstte bir "Demo modu" bandı gösterilir.
+If no Supabase key is configured the application drops into **demo mode**: an
+in-memory data source filled with seed data, where the whole plan → invite → vote
+→ booking flow works end to end. A "Demo mode" banner appears at the top.
 
-### Demo hesapları
+### Demo accounts
 
-| Rol | E-posta | Şifre |
+| Role | Email | Password |
 | --- | --- | --- |
-| Kullanıcı | `elif@ornek.test` | `Demo1234` |
-| İşletme | `isletme01@ornek.test` | `Isletme1234` |
-| Yönetici | `admin@ornek.test` | `Admin1234` |
+| User | `elif@ornek.test` | `Demo1234` |
+| Business | `isletme01@ornek.test` | `Isletme1234` |
+| Admin | `admin@ornek.test` | `Admin1234` |
 
-Bu hesaplar giriş ekranında da listelenir (yalnızca demo modda). Tümü kurgusaldır;
-gerçek kişi verisi içermez.
+These are also listed on the sign-in screen (in demo mode only). All of them are
+fictional and contain no real personal data.
 
-### Mobil uygulama
+### Mobile app
 
 ```bash
-npm run dev:mobile      # Expo geliştirme sunucusu
+npm run dev:mobile      # Expo development server
 ```
 
-Expo Go ile QR kodu okutun. Mobil de aynı demo veri kaynağını kullanır.
+Scan the QR code with Expo Go. Mobile uses the same demo data source.
 
 ---
 
-## Ne içeriyor?
+## What is in it
 
-| Alan | Durum |
+| Area | State |
 | --- | --- |
-| Public SEO sitesi (Next.js) | Şehir, ilçe, kategori, mekân, paket, rehber, SSS sayfaları — statik/ISR |
-| Misafir davet akışı | Hesap açmadan katılım ve oy (imzalı çerez kimliği) |
-| Kullanıcı paneli | 7 adımlı plan sihirbazı, davet, oylama, rezervasyon takibi |
-| İşletme paneli | Paket yönetimi, rezervasyon onay/ret, çalışma saatleri |
-| Yönetici paneli | Başvuru inceleme, kullanıcı/işletme yönetimi, denetim kaydı |
-| Mobil uygulama (Expo) | Giriş, plan sihirbazı, oylama, rezervasyon, bildirimler |
-| Veritabanı | 13 migration + RLS politikaları + seed |
-| Testler | 479 birim/entegrasyon (Vitest) + 44 E2E (Playwright) |
+| Public SEO site (Next.js) | City, district, category, venue, package, guide and FAQ pages — static / ISR |
+| Guest invite flow | Join and vote without an account (signed cookie identity) |
+| User panel | 7-step plan wizard, invitations, voting, booking tracking |
+| Business panel | Package management, booking approve/reject, opening hours |
+| Admin panel | Application review, user and business management, audit log |
+| Mobile app (Expo) | Sign-in, plan wizard, voting, bookings, notifications |
+| Database | 13 migrations + RLS policies + seed |
+| Tests | 479 unit/integration (Vitest) + 44 E2E (Playwright) |
 
 ---
 
-## Depo yapısı
+## Repository layout
 
 ```
 apps/
-  web/            Next.js 16 (App Router) — public site + tüm paneller
+  web/            Next.js 16 (App Router) — public site + every panel
   mobile/         Expo SDK 57 + Expo Router
 packages/
-  types/          Paylaşılan domain tipleri
-  core/           İş mantığı: eşleştirme, bütçe, durum makineleri, SEO, seed
-  validation/     Zod şemaları (web + mobil ortak)
-  ui/             Tasarım tokenları (tek kaynak; web'e CSS, mobile'a TS)
+  types/          shared domain types
+  core/           business logic: matching, budget, state machines, SEO, seed
+  validation/     Zod schemas (shared by web and mobile)
+  ui/             design tokens (single source; CSS for web, TS for mobile)
 supabase/
-  migrations/     0001…0013 — şema, indeksler, RLS
-  seed/seed.sql   packages/core seed'inden ÜRETİLİR (elle düzenlemeyin)
-  tests/rls.sql   RLS politika testleri
-e2e/              Playwright senaryoları
-tests/            Entegrasyon, SEO ve güvenlik testleri
-scripts/          Kod üretimi (tokenlar, seed SQL) ve yardımcılar
-docs/             Ürün, mimari, güvenlik, SEO, test ve karar dokümanları
+  migrations/     0001…0013 — schema, indexes, RLS
+  seed/seed.sql   GENERATED from the packages/core seed (do not edit by hand)
+  tests/rls.sql   RLS policy tests
+e2e/              Playwright scenarios
+tests/            integration, SEO and security tests
+scripts/          code generation (tokens, seed SQL) and helpers
+docs/             product, architecture, security, SEO, testing and decision records
 ```
 
 ---
 
-## Komutlar
+## Commands
 
-| Komut | Açıklama |
+| Command | Description |
 | --- | --- |
-| `npm run dev` | Web geliştirme sunucusu |
-| `npm run dev:mobile` | Expo geliştirme sunucusu |
-| `npm run build` | Web üretim derlemesi |
-| `npm run start` | Üretim derlemesini çalıştırır |
-| `npm run lint` | ESLint (tüm depo) |
-| `npm run typecheck` | Tüm workspace'lerde `tsc --noEmit` |
-| `npm test` | Vitest (birim + entegrasyon) |
-| `npm run test:e2e` | Playwright (web sunucusunu kendi başlatır) |
-| `npm run test:rls` | RLS SQL testleri (Supabase CLI gerektirir) |
+| `npm run dev` | web development server |
+| `npm run dev:mobile` | Expo development server |
+| `npm run build` | web production build |
+| `npm run start` | serve the production build |
+| `npm run lint` | ESLint across the repository |
+| `npm run typecheck` | `tsc --noEmit` in every workspace |
+| `npm test` | Vitest (unit + integration) |
+| `npm run test:e2e` | Playwright (starts the web server itself) |
+| `npm run test:rls` | RLS SQL tests (requires the Supabase CLI) |
 | `npm run verify` | lint + typecheck + test |
-| `npm run seed:sql` | `supabase/seed/seed.sql` dosyasını yeniden üretir |
-| `npm run tokens:css` | `apps/web/src/styles/tokens.css` dosyasını yeniden üretir |
+| `npm run seed:sql` | regenerate `supabase/seed/seed.sql` |
+| `npm run tokens:css` | regenerate `apps/web/src/styles/tokens.css` |
 
 ---
 
-## Dokümantasyon
+## Documentation
 
-**Başlangıç**
-- [SETUP.md](docs/SETUP.md) — kurulum, demo mod, Supabase (local ve bulut)
-- [DEPLOY_WEB.md](docs/DEPLOY_WEB.md) — web dağıtımı ve ortam değişkenleri
-- [BUILD_ANDROID.md](docs/BUILD_ANDROID.md) — Android APK/AAB üretimi
-- [MOBILE_QA_CHECKLIST.md](docs/MOBILE_QA_CHECKLIST.md) — cihaz test listesi
+**Getting started**
+- [SETUP.md](docs/SETUP.md) — installation, demo mode, Supabase (local and cloud)
+- [DEPLOY_WEB.md](docs/DEPLOY_WEB.md) — web deployment and environment variables
+- [BUILD_ANDROID.md](docs/BUILD_ANDROID.md) — producing an Android APK/AAB
+- [MOBILE_QA_CHECKLIST.md](docs/MOBILE_QA_CHECKLIST.md) — on-device test list
 
-**Ürün ve tasarım**
+**Product and design**
 - [PRODUCT_REQUIREMENTS.md](docs/PRODUCT_REQUIREMENTS.md) · [USER_FLOWS.md](docs/USER_FLOWS.md) · [INFORMATION_ARCHITECTURE.md](docs/INFORMATION_ARCHITECTURE.md) · [DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) · [SCREENSHOTS.md](docs/SCREENSHOTS.md)
 
-**Teknik**
+**Technical**
 - [TECHNICAL_ARCHITECTURE.md](docs/TECHNICAL_ARCHITECTURE.md) · [DATABASE_SCHEMA.md](docs/DATABASE_SCHEMA.md) · [SECURITY_MODEL.md](docs/SECURITY_MODEL.md) · [SEO_STRATEGY.md](docs/SEO_STRATEGY.md) · [TEST_STRATEGY.md](docs/TEST_STRATEGY.md)
 
-**Süreç**
-- [DECISIONS.md](docs/DECISIONS.md) — gerekçeleriyle tüm teknik kararlar (D-001…D-031)
-- [PROGRESS.md](docs/PROGRESS.md) — faz faz ne yapıldı
-- [KNOWN_LIMITATIONS.md](docs/KNOWN_LIMITATIONS.md) — bilinen sınırlar (L-01…L-15)
+**Process**
+- [DECISIONS.md](docs/DECISIONS.md) — every technical decision with its rationale (D-001…D-031)
+- [PROGRESS.md](docs/PROGRESS.md) — what was built, phase by phase
+- [KNOWN_LIMITATIONS.md](docs/KNOWN_LIMITATIONS.md) — known limits (L-01…L-15)
 - [RELEASE_CHECKLIST.md](docs/RELEASE_CHECKLIST.md) · [FUTURE_ROADMAP.md](docs/FUTURE_ROADMAP.md)
 
 ---
 
-## Mimari kısa özet
+## Architecture in short
 
-**Veri erişimi adaptör desenlidir.** `createRepository()` ya `DemoRepository`
-(bellek içi, seed dolu) ya da `SupabaseRepository` döner; uygulama katmanı hangisi
-olduğunu bilmez. Bu sayede depo klonlandığı anda hiçbir hesap açmadan çalışır ve
-Supabase eklendiğinde tek satır uygulama kodu değişmez.
+**Data access is an adapter.** `createRepository()` returns either
+`DemoRepository` (in-memory, seed-filled) or `SupabaseRepository`; the
+application layer never knows which. That is why the repository runs the moment
+it is cloned, without creating any account, and why adding Supabase changes not a
+single line of application code.
 
-**Seed tek kaynaktan gelir.** `packages/core/src/seed/dataset.ts` hem demo
-deposunu hem de `supabase/seed/seed.sql` dosyasını besler (`npm run seed:sql`).
-İkisi asla birbirinden ayrışmaz.
+**The seed has one source.** `packages/core/src/seed/dataset.ts` feeds both the
+demo repository and `supabase/seed/seed.sql` (`npm run seed:sql`). The two can
+never drift apart.
 
-**Tasarım tokenları tek kaynaktan gelir.** `packages/ui` içindeki tokenlardan web
-için CSS değişkenleri üretilir (`npm run tokens:css`); mobil doğrudan TS olarak
-kullanır. Renk kontrastları otomatik testle doğrulanır.
+**Design tokens have one source.** CSS variables for the web are generated from
+the tokens in `packages/ui` (`npm run tokens:css`); mobile consumes them directly
+as TypeScript. Colour contrast is verified by an automated test.
 
-**Güvenlik çok katmanlıdır.** RLS politikaları asıl otorite; sunucu tarafında
-`requireUser` / `requireRole` / `requireBusinessMember` ve rota koruması bunu
-tekrarlar. Davet tokenları veritabanında yalnızca SHA-256 özet olarak saklanır.
+**Security is layered.** RLS policies are the real authority; `requireUser`,
+`requireRole` and `requireBusinessMember` on the server, plus route guards,
+repeat it. Invite tokens are stored in the database only as SHA-256 digests.
 
-Ayrıntılar: [TECHNICAL_ARCHITECTURE.md](docs/TECHNICAL_ARCHITECTURE.md),
+Details: [TECHNICAL_ARCHITECTURE.md](docs/TECHNICAL_ARCHITECTURE.md),
 [SECURITY_MODEL.md](docs/SECURITY_MODEL.md).
 
 ---
 
-## Bilinmesi gerekenler
+## Things worth knowing
 
-- **Bu depoda gerçek gizli anahtar yoktur.** `.env.example` şablondur; `.env.local`
-  sürüm kontrolüne girmez.
-- **Tüm veriler kurgusaldır.** Kişi adları, işletmeler, telefonlar ve yorumlar
-  örnektir; gerçek kişi ya da işletme bilgisi içermez.
-- **Üretim CSP'si `script-src 'unsafe-inline'` içerir.** Next.js App Router'ın
-  satır içi RSC yükü nedeniyle zorunludur; gerekçe ve azaltıcı önlemler için
-  [D-031](docs/DECISIONS.md) ve [L-15](docs/KNOWN_LIMITATIONS.md).
-- Kapsamı bilerek dışarıda bırakılan özellikler ve nedenleri
-  [KNOWN_LIMITATIONS.md](docs/KNOWN_LIMITATIONS.md) içinde listelidir.
+- **There are no real secrets in this repository.** `.env.example` is a template;
+  `.env.local` never enters version control.
+- **All data is fictional.** Person names, businesses, phone numbers and reviews
+  are examples; none of it belongs to a real person or business.
+- **The production CSP includes `script-src 'unsafe-inline'`.** This is forced by
+  the Next.js App Router's inline RSC payload; the rationale and the mitigations
+  are in [D-031](docs/DECISIONS.md) and [L-15](docs/KNOWN_LIMITATIONS.md).
+- Features deliberately left out of scope, and why, are listed in
+  [KNOWN_LIMITATIONS.md](docs/KNOWN_LIMITATIONS.md).
 
 ---
 
-## Rolüm
+## My role
 
-**Tek geliştirici.** Ürün fikri, veri modeli, Next.js web uygulaması, mobil
-uygulama, paylaşılan paketler (`core` / `types` / `ui` / `validation`), Supabase
-şeması ve RLS politikaları ile test altyapısının tamamı bana ait.
+**Sole developer.** The product idea, the data model, the Next.js web
+application, the mobile app, the shared packages (`core` / `types` / `ui` /
+`validation`), the Supabase schema and RLS policies, and the entire test setup
+are all mine.
