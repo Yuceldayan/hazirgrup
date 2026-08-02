@@ -160,8 +160,8 @@ Ayrıntılar: [TECHNICAL_ARCHITECTURE.md](docs/TECHNICAL_ARCHITECTURE.md),
 
 ---
 
-## Rolum
+## Rolüm
 
-**Tek gelistirici.** Urun fikri, veri modeli, Next.js web uygulamasi, mobil
-uygulama, paylasilan paketler (core / types / ui / validation), Supabase semasi
-ve RLS politikalari ile test altyapisinin tamami bana ait.
+**Tek geliştirici.** Ürün fikri, veri modeli, Next.js web uygulaması, mobil
+uygulama, paylaşılan paketler (`core` / `types` / `ui` / `validation`), Supabase
+şeması ve RLS politikaları ile test altyapısının tamamı bana ait.
