@@ -157,3 +157,11 @@ Ayrıntılar: [TECHNICAL_ARCHITECTURE.md](docs/TECHNICAL_ARCHITECTURE.md),
   [D-031](docs/DECISIONS.md) ve [L-15](docs/KNOWN_LIMITATIONS.md).
 - Kapsamı bilerek dışarıda bırakılan özellikler ve nedenleri
   [KNOWN_LIMITATIONS.md](docs/KNOWN_LIMITATIONS.md) içinde listelidir.
+
+---
+
+## Rolum
+
+**Tek gelistirici.** Urun fikri, veri modeli, Next.js web uygulamasi, mobil
+uygulama, paylasilan paketler (core / types / ui / validation), Supabase semasi
+ve RLS politikalari ile test altyapisinin tamami bana ait.
