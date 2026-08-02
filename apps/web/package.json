@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "predev": "npm run tokens --silent",
-    "dev": "next dev --port 3000",
+    "dev": "next dev",
     "prebuild": "npm run tokens --silent",
     "build": "next build",
     "start": "next start --port 3000",
